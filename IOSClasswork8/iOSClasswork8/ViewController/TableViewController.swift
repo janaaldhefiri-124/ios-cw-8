@@ -12,10 +12,7 @@ class TableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
+   
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -24,7 +21,12 @@ class TableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CityCell
+        
+        let city = cities[indexPath.row]
+        
+        cell.cityLabel.text = city.name
+        cell.cityImageView.image =  UIImage(named: city.cardName)
 
         //📌أعرض الـ card للمدينة مع اسمها في الخلية
         // Configure the cell...
@@ -38,7 +40,10 @@ class TableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         //📌قم بالانتقال الى الواجهة التالية بعد وضع اسم الـ Segue و انقل هيكل الـCity المختار من قبل المستخدم
+        let city = cities[indexPath.row]
+        performSegue(withIdentifier: "goweatherdetails", sender: city)
         //📌استخدم دالةperformSegue(withIdentifier: , sender: T##Any?)
     }
     
@@ -49,7 +54,9 @@ class TableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //📌عين الواجهة الجديدة للانتقال اليها عبر الـ Segue
         // Get the new view controller using segue.destination.
-       
+        let weatherVC = segue.destination as! weatherDetails
+        let city = sender as! City
+        weatherVC.city = city
         //📌مرر هيكل City الى الواجهة الجديدة
         // Pass the selected object to the new view controller.
     

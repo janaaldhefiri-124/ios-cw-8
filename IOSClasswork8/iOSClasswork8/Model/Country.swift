@@ -30,9 +30,9 @@ struct City{
 
 
 var cities :[City] = [
-    City(name: "الكويت", cardName: "الكويت"),
-    City(name: "الرياض", cardName: "الرياض"),
-    City(name: "دبي", cardName: "دبي"),
-    City(name: "لندن", cardName: "لندن"),
-    City(name: "موسكو", cardName: "موسكو")
+    City(name: "Kuwait", cardName: "الكويت"),
+    City(name: "Riyadh", cardName: "الرياض"),
+    City(name: "Dubai", cardName: "دبي"),
+    City(name: "London", cardName: "لندن"),
+    City(name: "Moscow", cardName: "موسكو")
 ]
